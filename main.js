@@ -1,22 +1,18 @@
-function useFetch(url, callback) {
-  fetch(url)
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
-      callback(data);
-      console.log(data);
-    });
-}
 
-function callbackFunc(dataInFunc) {
-  const input = document.querySelector("input");
-  var value = input.value;
-  const resultDiv = document.querySelector(".result");
-  resultDiv.innerHTML = value * dataInFunc.rates.ILS;
-}
+var image=document.querySelector("img"); 
+// Make a request for a user with a given ID
+axios.get('https://api.thecatapi.com/v1/images/search')
+  .then(function (response) {
+    // handleconsole.log(data); success
+    console.log(response);
+    
+          image.src = response.data[0].url;
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
 
-var button = document.querySelector("button");
-button.onclick = function () {
-  useFetch("https://api.exchangeratesapi.io/latest", callbackFunc);
-};
+  .then(function() {
+         
+});
